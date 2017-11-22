@@ -1,6 +1,15 @@
 $(function () {
   var socket = io();
   var users = {};
+  var windowFocus;
+  
+  // Keep a variable to know if the window has focus
+  $(window).focus(function() {
+      windowFocus = true;
+      document.title = "XatBy2";
+  }).blur(function() {
+      windowFocus = false;
+  });
   
   $('body').on('submit', '#login', function(){
     socket.emit('login', $('#nick').val());
@@ -67,5 +76,8 @@ $(function () {
     if (!$("#messages").length) return;
     $('#messages').append($('<li>').append(message));
     $("#messages").scrollTop($("#messages")[0].scrollHeight);
+    if (!windowFocus) {
+      document.title = "(*) XatBy2";
+    }
   }
 });
