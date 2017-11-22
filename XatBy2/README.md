@@ -5,3 +5,5 @@ A chat app for 2 people (really impressive, isn't it?) using node.js and socket-
 
 To start the server:
 > node server
+or
+> npm start
