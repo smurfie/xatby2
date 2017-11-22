@@ -1,0 +1,17 @@
+{
+  "name": "Xatvitu",
+  "version": "0.0.1",
+  "description": "Xatvitu",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/smurfie/xatby2.git"
+  },
+  "start": "node server.js",
+  "author": "Joan Fluvia <joanfluvia@gmail.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.15.2",
+    "socket.io": "^2.0.4"
+  }
+}
