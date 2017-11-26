@@ -25,24 +25,35 @@ io.on('connection', function(socket){
   var clientIp = socket.request.connection.remoteAddress;
   var nick;
   
+  console.log("New socket: " + socketId + " :: " + clientIp);
+  socket.emit('need login');
+  
   socket.on('disconnect', function(){
+  	console.log("User disconnected: " + nick + " :: " + socketId);
+  	
     if (nick) {
       delete users[nick];
-      io.emit('disconnect message', {'nick':nick, 'users':Object.keys(users).sort()});
+      io.to('general').emit('disconnect message', {'nick':nick, 'users':Object.keys(users).sort()});
     }
   });
   
   socket.on('chat message', function(msg){
     msg.nick = nick;
-    io.emit('chat message', msg);
+    io.to('general').emit('chat message', msg);
   });
   
   socket.on('login', function(msg){
     if (!users[msg]) {
       nick = msg;
       users[msg] = socketId;
+      
+      //Connecting to the general room:
+      socket.join('general');
+      
       socket.emit('login success');
-      io.emit('login message', {'nick':nick, 'users':Object.keys(users).sort()});
+      io.to('general').emit('login message', {'nick':nick, 'users':Object.keys(users).sort()});
+
+      console.log("User connected: " + nick + " :: " + socketId);
     } else {
       socket.emit('login error', '"' + msg + '" is already in use');
     }
