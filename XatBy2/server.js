@@ -25,7 +25,7 @@ io.on('connection', function(socket){
   var clientIp = socket.request.connection.remoteAddress;
   var nick;
   
-  console.log("New socket: " + socketId + " :: " + clientIp);
+  console.log("New socket: " + socketId);
   socket.emit('need login');
   
   socket.on('disconnect', function(){
@@ -43,7 +43,10 @@ io.on('connection', function(socket){
   });
   
   socket.on('login', function(msg){
-    if (!users[msg]) {
+  	var nickRegex = /^[a-zA-Z\-_]{4,15}$/;
+  	if (!msg.match(nickRegex)) {
+  		socket.emit('login error', 'Nickname has to be only letters, - or _, from 4 to 15 characters');
+  	} else if (!users[msg]) {
       nick = msg;
       users[msg] = socketId;
       

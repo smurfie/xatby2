@@ -1,7 +1,5 @@
 $(function () {
   var socket = io();
-  var users = {};
-  var windowFocus = true;
   
   // Keep a variable to know if the window has focus
   $(window).focus(function() {
@@ -12,9 +10,8 @@ $(function () {
   });
   
   $('body').on('submit', '#login', function(){
-  	var nick = $('#nick').val();
+  	nick = $('#nick').val();
     socket.emit('login', nick);
-    sessionStorage.setItem('nick', nick);
     return false;
   });
   
@@ -31,14 +28,14 @@ $(function () {
   socket.on('connect', function () {
     console.log('Socket is connected.');
     if ($('#xat-grid').length) {
-    	addMessage('Server is up and ready!');
+    	addSystemMessage('Server is up and ready!');
     }
   });
 
   socket.on('disconnect', function () {
     console.log('Socket is disconnected.');
     if ($('#xat-grid').length) {
-    	addMessage('Server went down, waiting for reconnection...');
+    	addSystemMessage('Server went down, waiting for reconnection...');
     }
   });
   
@@ -54,20 +51,18 @@ $(function () {
   
   socket.on('login message', function(msg){
   	//This message won't show for self because probably the xat window isn't still created
-    addMessage('<strong style="color:red">' + msg.nick + ' connected.</strong>');
+  	addSystemMessage(msg.nick + ' connected.');
     users = msg.users;
     updateUsers();
   });
   
   socket.on('disconnect message', function(msg){
-    addMessage('<strong style="color:red">' + msg.nick + ' disconnected.</strong>');
+  	addSystemMessage(msg.nick + ' disconnected.');
     users = msg.users;
     updateUsers();
   });
   
   socket.on('need login', function(msg){
-  	var nick = sessionStorage.getItem('nick');
-  	
   	//If we are in the login window, wait for the user to enter his nick; (do nothing)
   	if ($("#nick").length) {
   		return;
@@ -106,30 +101,45 @@ $(function () {
   	}
   });
   
-  $( window ).resize(function() {
+  $(window).resize(function() {
     updateXatListHeigth()
   });
-  
-  function updateUsers() {
-    $("#users").empty();
-    for (var i=0; i<users.length; i++) {
-      $("#users").append('<li>' + users[i] + '</li>');
-    }
-  }
-  
-  function updateXatListHeigth() {
-     $('#messages').css("max-height", window.innerHeight - $("#xat").outerHeight());
-  }
-  
-  function addMessage(message) {
-    // if the list isn't created yet return;
-    if (!$("#messages").length) return;
-    
-    var today = new Date();
-    $('#messages').append($('<li>').append("(" + today.getHours() + ":" + today.getMinutes() + ") " + message));
-    $("#messages").scrollTop($("#messages")[0].scrollHeight);
-    if (!windowFocus) {
-      document.title = "(*) XatBy2";
-    }
-  }
 });
+
+var users = {};
+var nick;
+var windowFocus = true;
+
+function updateUsers() {
+	$("#users").empty();
+	for (var i=0; i<users.length; i++) {
+		$("#users").append((users[i]===nick ? '<li class="yourself">' : '<li>') + users[i] + '</li>');
+	}
+}
+
+function updateXatListHeigth() {
+	$('#messages').css("max-height", window.innerHeight - $("#xat").outerHeight());
+}
+
+function addMessage(message) {
+	// if the list isn't created yet return;
+	if (!$("#messages").length) return;
+	
+	$('#messages').append($('<li>').append("(" + formatDate(new Date()) + ") " + message));
+	$("#messages").scrollTop($("#messages")[0].scrollHeight);
+	if (!windowFocus) {
+		document.title = "(*) XatBy2";
+	}
+}
+
+function addSystemMessage(message) {
+	addMessage('<strong style="color:red">' + message + '</strong>');
+}
+
+function formatDate(date) {
+	return twoCharsNumber(date.getHours()) + ":" + twoCharsNumber(date.getMinutes()) + ":" + twoCharsNumber(date.getSeconds());
+}
+
+function twoCharsNumber(number) {
+	return number+"".length<2 ? "0" + number : number; 
+}
