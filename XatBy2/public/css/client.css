@@ -40,6 +40,12 @@ body {
   background: #eee;
 }
 
+#messages li img {
+  height: 12px;
+  width: 12px;
+  border: 1px solid black;
+}
+
 #users {
   background: #777;
 }

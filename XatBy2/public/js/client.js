@@ -45,6 +45,11 @@ $(function () {
     addMessage('<strong style="color:' + msg['nick-color'] + '">' + msg.nick + ':</strong> ' + escapedMessage);
   });
   
+  socket.on('chat image', function(msg){
+    addMessage('<strong style="color:' + msg['nick-color'] + '">' + msg.nick +
+    		':</strong> <img src=" ' + msg.image + '" /> <-- Right click and open image in another window');
+  });
+  
   socket.on('num users', function(msg){
     $('#numUsers').html(msg);
   });
@@ -104,6 +109,25 @@ $(function () {
   $(window).resize(function() {
     updateXatListHeigth()
   });
+  
+  document.onpaste = function(event){
+    var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    for (index in items) {
+      var item = items[index];
+      if (item.kind === 'file') {
+        var blob = item.getAsFile();
+        var reader = new FileReader();
+        reader.onload = function(event){
+        	var data = event.target.result;
+        	if (data.startsWith("data:image")) {
+        		var nickColor = $('#nick-color').val();
+        		socket.emit('chat image', {'nick-color':nickColor, 'image': data});
+        	}
+        }
+        reader.readAsDataURL(blob);
+      }
+    }
+  }
 });
 
 var users = {};

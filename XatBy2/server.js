@@ -42,6 +42,11 @@ io.on('connection', function(socket){
     io.to('general').emit('chat message', msg);
   });
   
+  socket.on('chat image', function(msg){
+    msg.nick = nick;
+    io.to('general').emit('chat image', msg);
+  });
+  
   socket.on('login', function(msg){
   	var nickRegex = /^[a-zA-Z\-_]{4,15}$/;
   	if (!msg.match(nickRegex)) {
