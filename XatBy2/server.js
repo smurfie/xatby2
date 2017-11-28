@@ -5,7 +5,6 @@ var express = require('express'),
 
 var users = {};
 
-
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -13,11 +12,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'))
 
 app.get('/', function(req, res){
-  res.render('login');
-});
-
-app.post('/xat', function(req, res){
-  res.render('xat');
+  res.render('main');
 });
 
 io.on('connection', function(socket){

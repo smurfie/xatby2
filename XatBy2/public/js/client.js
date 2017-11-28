@@ -25,6 +25,39 @@ $(function () {
     return false;
   });
   
+  $(window).resize(function() {
+    updateXatListHeigth()
+  });
+  
+  $("#chat-image").click(function() {
+    $("#chat-image").hide();
+  });
+  
+  $("#xat-grid").on("click", "li img.chat-image", function() {
+    $("#chat-image img").attr("src", $(this).data("src"));
+    $("#chat-image").show();
+  });
+  
+  document.onpaste = function(event){
+    var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    for (index in items) {
+      var item = items[index];
+      if (item.kind === 'file') {
+        var blob = item.getAsFile();
+        var reader = new FileReader();
+        reader.onload = function(event){
+        	var data = event.target.result;
+        	if (data.startsWith("data:image")) {
+        		var nickColor = $('#nick-color').val();
+        		socket.emit('chat image', {'nick-color':nickColor, 'image': data});
+        	}
+        }
+        reader.readAsDataURL(blob);
+      }
+    }
+  }
+  
+  // Socket
   socket.on('connect', function () {
     console.log('Socket is connected.');
     if ($('#xat-grid').length) {
@@ -46,8 +79,7 @@ $(function () {
   });
   
   socket.on('chat image', function(msg){
-    addMessage('<strong style="color:' + msg['nick-color'] + '">' + msg.nick +
-    		':</strong> <img src=" ' + msg.image + '" /> <-- Right click and open image in another window');
+    addMessage('<strong style="color:' + msg['nick-color'] + '">' + msg.nick + ':</strong> <img class="chat-image" src="/img/popupImage.png" data-src=" ' + msg.image + '" />');
   });
   
   socket.on('num users', function(msg){
@@ -55,7 +87,6 @@ $(function () {
   });
   
   socket.on('login message', function(msg){
-  	//This message won't show for self because probably the xat window isn't still created
   	addSystemMessage(msg.nick + ' connected.');
     users = msg.users;
     updateUsers();
@@ -68,17 +99,12 @@ $(function () {
   });
   
   socket.on('need login', function(msg){
-  	//If we are in the login window, wait for the user to enter his nick; (do nothing)
-  	if ($("#nick").length) {
-  		return;
-  	}
-
-  	// If we have the nick cached send it, else reload to go to login window
+  	// If we have the nick cached send it, else show the login window
   	if (nick) {
   		socket.emit('login', nick);
   	} else {
-  		//Reload
-  		location.reload();
+  		$("#login").show();
+      $("#xat-grid").hide();
   	}
   });
   
@@ -87,47 +113,19 @@ $(function () {
   });
   
   socket.on('login success', function(msg){
-  	// If we are in the login window load the xat window
-  	if ($("#nick").length) {
-	    $.post('xat')
-	    .done(function(data){
-	    		var nickColor = localStorage.getItem('nickColor');
-	    		
-	        $("body").html(data);
-	        updateUsers();
-	        updateXatListHeigth();
-	        $("#message").focus();
-	        
-	        // Restore nick color
-	        if (nickColor) {
-	        	$("#nick-color").val(nickColor);
-	        }
-	    });
-  	}
-  });
-  
-  $(window).resize(function() {
-    updateXatListHeigth()
-  });
-  
-  document.onpaste = function(event){
-    var items = (event.clipboardData || event.originalEvent.clipboardData).items;
-    for (index in items) {
-      var item = items[index];
-      if (item.kind === 'file') {
-        var blob = item.getAsFile();
-        var reader = new FileReader();
-        reader.onload = function(event){
-        	var data = event.target.result;
-        	if (data.startsWith("data:image")) {
-        		var nickColor = $('#nick-color').val();
-        		socket.emit('chat image', {'nick-color':nickColor, 'image': data});
-        	}
-        }
-        reader.readAsDataURL(blob);
-      }
+    var nickColor = localStorage.getItem('nickColor');
+    
+    $("#login").hide();
+    $("#xat-grid").show();
+    updateUsers();
+    updateXatListHeigth();
+    $("#message").focus();
+    
+    // Restore nick color
+    if (nickColor) {
+      $("#nick-color").val(nickColor);
     }
-  }
+  });
 });
 
 var users = {};
@@ -165,5 +163,5 @@ function formatDate(date) {
 }
 
 function twoCharsNumber(number) {
-	return number+"".length<2 ? "0" + number : number; 
+	return (number+"").length<2 ? "0" + number : number; 
 }

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <form id="login" action="">
+      <input id="nick" autocomplete="off" placeholder="nick"/>
+      <button>Send</button>
+      <p id="login-error"></p>
+    </form>
+    
+    <div id="xat-grid" style="display:none">
+      <div id="content">
+        <ul id="messages"></ul>
+        <ul id="users"></ul>
+      </div>
+      <form id="xat" action="">
+        <input id="nick-color" type="color" value="#ff0000" />
+        <input id="message" autocomplete="off" placeholder="message"/>
+        <button>Send</button>
+      </form>
+    </div>
+    
+    <div id="chat-image" class="modal">
+      <img class="modal-content" id="img01">
+    </div>
+    
+    <% include partials/scripts %>
+  </body>
+</html>
