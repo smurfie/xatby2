@@ -32,7 +32,7 @@ module.exports = class ServerCommandParser {
     	switch (helpAbout) {
     		case '?':
     		case 'help':
-    			this._sendMessage("Use /help or /? to obtain a list of all commands. Also you can use '/help [command]' or '/? [command]' to obtain help about one command");
+    			this._sendMessage("Use /help or /? to obtain a list of all commands. Also you can use '/help [command]' to obtain help about one command");
     			this._sendMessage("But you already know, didn't you?");
     			break;
     		default:

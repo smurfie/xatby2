@@ -1,0 +1,14 @@
+{
+	"placeholder.user": "User",
+	"placeholder.message": "Message",
+	
+	"label.send": "Send",
+	
+	"message.connect": "Server is up and ready!",
+	"message.disconnect": "Server went down, waiting for reconnection...!",
+	"message.user.connected": "[[user]] connected",
+	"message.user.disconnected": "[[user]] disconnected",
+	
+	"message.username.restriction": "Username has to be only letters, - or _, from 4 to 15 characters",
+	"message.username.in.use": "\"{{user}}\" is already in use"
+}

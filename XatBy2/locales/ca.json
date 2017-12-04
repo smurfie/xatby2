@@ -1,0 +1,12 @@
+{
+	"User": "Usuari",
+	"Send": "Enviar",
+	"Message": "Missatge",
+	"placeholder.user": "placeholder.user",
+	"label.send": "label.send",
+	"placeholder.message": "placeholder.message",
+	"message.connect": "message.connect",
+	"message.disconnect": "message.disconnect",
+	"message.user.connected": "message.user.connected",
+	"message.user.disconnected": "message.user.disconnected"
+}

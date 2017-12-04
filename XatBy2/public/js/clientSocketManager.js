@@ -27,17 +27,15 @@ export default class ClientSocketManager {
   /* SOCKET FUNCTIONS */
   // CONNECT
   _connect() {
-    console.log('Socket is connected.');
     if ($('#xat-grid').length) {
-      Utils.addSystemMessage('Server is up and ready!', this._windowFocus);
+      Utils.addSystemMessage(connectMessage, this._windowFocus);
     }
   }
   
   // DISCONNECT
   _disconnect() {
-    console.log('Socket is disconnected.');
     if ($('#xat-grid').length) {
-      Utils.addSystemMessage('Server went down, waiting for reconnection...');
+      Utils.addSystemMessage(disconnectMessage, this._windowFocus);
     }
   }
   
@@ -67,14 +65,14 @@ export default class ClientSocketManager {
   
   // LOGIN MESSAGE
   _loginMessage({nick, users}) {
-    Utils.addSystemMessage(nick + ' connected.', this._windowFocus);
+    Utils.addSystemMessage(userConnected.replace("[[user]]", nick), this._windowFocus); //TODO get whole message from server
     this._users = users;
     this._updateUsers();
   }
     
   // DISCONNECT MESSAGE
   _disconnectMessage({nick, users}) {
-    Utils.addSystemMessage(nick + ' disconnected.', this._windowFocus);
+    Utils.addSystemMessage(userDisonnected.replace("[[user]]", nick), this._windowFocus); //TODO get whole message from server
     this._users = users;
     this._updateUsers();
   }

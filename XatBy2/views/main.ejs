@@ -5,8 +5,8 @@
   </head>
   <body>
     <form id="login" action="">
-      <input id="nick" autocomplete="off" placeholder="nick"/>
-      <button>Send</button>
+      <input id="nick" autocomplete="off" placeholder="<%= __('placeholder.user') %>"/>
+      <button><%= __('label.send') %></button>
       <p id="login-error"></p>
     </form>
     
@@ -17,15 +17,21 @@
       </div>
       <form id="xat" action="">
         <input id="nick-color" type="color" value="#ff0000" />
-        <input id="message" autocomplete="off" placeholder="message"/>
-        <button>Send</button>
+        <input id="message" autocomplete="off" placeholder="<%= __('placeholder.message') %>"/>
+        <button><%= __('label.send') %></button>
       </form>
     </div>
     
     <div id="chat-image" class="modal">
-      <img class="modal-content" id="img01">
+      <img class="modal-content">
     </div>
     
+    <script type="text/javascript">
+      let connectMessage = '<%= __('message.connect') %>',
+        disconnectMessage = '<%= __('message.disconnect') %>',
+        userConnected = '<%= __('message.user.connected') %>', //TODO remove
+        userDisconnected = '<%= __('message.user.disconnected') %>'; //TODO remove
+    </script>
     <% include partials/scripts %>
   </body>
 </html>
