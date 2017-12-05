@@ -1,3 +1,5 @@
+let translateCache = {};
+
 // Updates the user list (right-side) with the users passed as parameter
 export function updateUsers(users, nick) {
   $("#users").empty();
@@ -13,7 +15,7 @@ export function addMessage(message, windowFocus) {
   
   $('#messages').append($('<li>').append("(" + _formatDate(new Date()) + ") " + message));
   $("#messages").scrollTop($("#messages")[0].scrollHeight);
-  if (!windowFocus) {
+  if (!windowFocus && $("#xat-grid").is(":visible")) {
     document.title = "(*) XatBy2";
   }
 }
@@ -36,4 +38,19 @@ function _twoCharsNumber(number) {
 // Updates the chat height to fit the size of the browser window
 export function updateChatListHeigth() {
   $('#messages').css("max-height", window.innerHeight - $("#xat").outerHeight());
+}
+
+// Sends a key to translate to the server optionally with params and executes the callback when finished.
+// If callback is not set the function only caches the result for future uses
+export function translate(key, callback, params) {
+  if (!params && translateCache[key]) {
+    callback && callback(translateCache[key]);
+  } else {
+    $.post("/translate", {key, params: JSON.stringify(params)}, function(data){
+      if (!params) {
+        translateCache[key] = data;
+      }
+      callback && callback(data);
+    }, "json");
+  }
 }

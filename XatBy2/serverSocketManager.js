@@ -1,5 +1,3 @@
-let i18n = require("i18n");
-
 module.exports = class ServerSocketManager {
   constructor(socket, io, users, serverCommandParser) {
     this._nick;
@@ -7,6 +5,7 @@ module.exports = class ServerSocketManager {
     this._io = io;
     this._users = users;
     this._serverCommandParser = serverCommandParser;
+    this._req = socket.request;
     
     this._iniSocket();
   }
@@ -28,9 +27,10 @@ module.exports = class ServerSocketManager {
   _login(nick) {
   	let nickRegex = /^[a-zA-Z\-_]{4,15}$/;
   	if (typeof nick !== "string" || !nick.match(nickRegex)) {
-  		this._socket.emit('login error', i18n.__('message.username.restriction'));
+  		this._socket.emit('login error', this._req.__('message.username.restriction'));
   	} else if (!this._users[nick]) {
       this._nick = nick;
+      this._serverCommandParser.setNick(nick);
       this._users[nick] = this._socket;
       
       //Connecting to the general room:
@@ -41,7 +41,7 @@ module.exports = class ServerSocketManager {
 
       console.log("User connected: " + this._nick + " :: " + this._socket.id);
     } else {
-      this._socket.emit('login error', i18n.__('message.username.in.use', {user: nick}));
+      this._socket.emit('login error', this._req.__('message.username.in.use', {user: nick}));
     }
   }
   
@@ -74,5 +74,12 @@ module.exports = class ServerSocketManager {
     if (this._socket.rooms.general && typeof image === "string" && typeof nickColor === "string") {
       this._io.to('general').emit('chat image', {image, nickColor, nick: this._nick});
     }
+  }
+  
+  /* AUXILIAR FUNCTIONS */
+  _getCookie(name, cookies) {
+    var value = "; " + cookies;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
   }
 }

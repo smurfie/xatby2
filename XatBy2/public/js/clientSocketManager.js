@@ -28,14 +28,16 @@ export default class ClientSocketManager {
   // CONNECT
   _connect() {
     if ($('#xat-grid').length) {
-      Utils.addSystemMessage(connectMessage, this._windowFocus);
+      Utils.translate("message.connect", message => Utils.addSystemMessage(message, this._windowFocus));
+      // Cache the disconnect message to be able to retrieve it when the server goes down
+      Utils.translate("message.disconnect");
     }
   }
   
   // DISCONNECT
   _disconnect() {
     if ($('#xat-grid').length) {
-      Utils.addSystemMessage(disconnectMessage, this._windowFocus);
+      Utils.translate("message.disconnect", message => Utils.addSystemMessage(message, this._windowFocus));
     }
   }
   
@@ -60,19 +62,19 @@ export default class ClientSocketManager {
   
   // COMMAND MESSAGE
   _commandMessage(message) {
-    Utils.addMessage('<strong style="color:darkred">' + message + '</strong>');
+    Utils.addMessage('<strong style="color:darkred">' + message + '</strong>', this._windowFocus);
   }
   
   // LOGIN MESSAGE
   _loginMessage({nick, users}) {
-    Utils.addSystemMessage(userConnected.replace("[[user]]", nick), this._windowFocus); //TODO get whole message from server
+    Utils.translate("message.user.connected", message => Utils.addSystemMessage(message, this._windowFocus), {"user":nick});
     this._users = users;
     this._updateUsers();
   }
     
   // DISCONNECT MESSAGE
   _disconnectMessage({nick, users}) {
-    Utils.addSystemMessage(userDisonnected.replace("[[user]]", nick), this._windowFocus); //TODO get whole message from server
+    Utils.translate("message.user.disconnected", message => Utils.addSystemMessage(message, this._windowFocus), {"user":nick});
     this._users = users;
     this._updateUsers();
   }

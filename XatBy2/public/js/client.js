@@ -4,6 +4,11 @@ import * as Utils from './utils.js';
 $(function () {
   let clientSocketManager = new ClientSocketManager();
   
+  // Disable cache
+  $.ajaxSetup ({
+    cache: false
+  });
+
   // Keep a variable to know if the window has focus
   $(window).focus(function() {
     clientSocketManager.setWindowFocus(true);

@@ -1,12 +1,28 @@
 {
-	"User": "Usuari",
-	"Send": "Enviar",
-	"Message": "Missatge",
-	"placeholder.user": "placeholder.user",
-	"label.send": "label.send",
-	"placeholder.message": "placeholder.message",
-	"message.connect": "message.connect",
-	"message.disconnect": "message.disconnect",
-	"message.user.connected": "message.user.connected",
-	"message.user.disconnected": "message.user.disconnected"
+	"placeholder.user": "Usuari",
+	"placeholder.message": "Missatge",
+	
+	"label.send": "Enviar",
+	
+	"message.connect": "El servidor està apunt i funcionant!",
+	"message.disconnect": "El servidor s'ha parat, esperant reconexió...!",
+	"message.user.connected": "{{user}} connectat",
+	"message.user.disconnected": "{{user}} desconnectat",
+	
+	"message.username.restriction": "El nom d'usuari ha de constar només de lletres, - o _, de 4 a 15 caracters",
+	"message.username.in.use": "\"{{user}}\" ja està en ús",
+  
+  "command.instruction.not.a.command":  "'{{instruction}}' no és una instrucció. Escriu /help o /? per una llista de totes les possibles instruccions.",
+  
+  "command.help.1":          "Instruccions possibles: {{commands}}",
+  "command.help.2":          "Escriu: '/help [instrucció]' per més informació.",
+  "command.help.help.1":     "Escriu '/help' o '/?' per obtenir el llistat de totes les instruccions. Tambè pots escriure '/help [instrucció]' per obtenir ajuda d'una instrucció concreta",
+  "command.help.help.2":     "Però això ja ho sabies, oi?",
+  "command.help.roll.1":     "Escriu '/help roll xxDyyyy' on xx és un nombre entre 1 i 20 i yyyy és un nombre entre 1 i 1000 per llençar xx daus de yyyy cares",
+  "command.help.roll.2":     "O escriu '/roll' per llençar un dau de 6 cares",
+  "command.help.default.command":       "No hi ha ajuda d'aquesta instrucció, demana-li al desenvolupador que la implementi!",
+  "command.help.default.not.command":   "'{{command}}' no és una instrucció.",
+  
+  "command.roll.error":       "Format incorrecte. Escriu '/help roll xxDyyyy' on xx és un nombre entre 1 i 20 i yyyy és un nombre entre 1 i 1000 per llençar xx daus de yyyy cares",
+  "command.roll":             "{{user}} ha tirat {{dices}} i ha obtingut: {{result}}"
 }
