@@ -9,7 +9,8 @@ module.exports = class ServerCommandParser {
     this._commands = {
       '?':            (params) => this._help(params),
       'help':         (params) => this._help(params),
-      'roll':         (params) => this._roll(params)
+      'roll':         (params) => this._roll(params),
+      'sink':         (params) => this._sink(params) //FIXME Change command for game to hold more games and use with left mouse button?
     };
   }
   
@@ -27,6 +28,7 @@ module.exports = class ServerCommandParser {
     this._nick = nick;
   }
   
+  // Roll dice
   _roll(parameters) {
   	if (parameters.length === 0) {
       parameters = ["1D6"];
@@ -51,6 +53,20 @@ module.exports = class ServerCommandParser {
     }
   }
   
+  // Play sink game
+  _sink(parameters) {
+  	if (parameters.length === 0) {
+  		this._sendMessage(this._req.__("command.roll.error"));
+  	} else {
+  		switch (parameters[0]) {
+  			case 'challenge':
+  				break;
+  			default:
+  				this._sendMessage(this._req.__("command.roll.error"));
+  		}
+  	}
+  }
+  
   _help(parameters) {
     if (parameters.length === 0) {
       this._sendMessage(this._req.__("command.help.1", {commands: Object.keys(this._commands).join(", ")}));
@@ -66,6 +82,10 @@ module.exports = class ServerCommandParser {
         case 'roll':
           this._sendMessage(this._req.__("command.help.roll.1"));
           this._sendMessage(this._req.__("command.help.roll.2"));
+          break;
+        case 'sink':
+          this._sendMessage(this._req.__("command.help.sink.1"));
+          this._sendMessage(this._req.__("command.help.sink.2"));
           break;
     		default:
     			if (this._commands[helpAbout]) {

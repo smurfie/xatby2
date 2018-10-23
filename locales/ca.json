@@ -14,12 +14,14 @@
   
   "command.instruction.not.a.command":  "'{{instruction}}' no és una instrucció. Escriu /help o /? per una llista de totes les possibles instruccions.",
   
-  "command.help.1":          "Instruccions possibles: {{commands}}",
-  "command.help.2":          "Escriu: '/help [instrucció]' per més informació.",
-  "command.help.help.1":     "Escriu '/help' o '/?' per obtenir el llistat de totes les instruccions. Tambè pots escriure '/help [instrucció]' per obtenir ajuda d'una instrucció concreta",
-  "command.help.help.2":     "Però això ja ho sabies, oi?",
-  "command.help.roll.1":     "Escriu '/help roll xxDyyyy' on xx és un nombre entre 1 i 20 i yyyy és un nombre entre 1 i 1000 per llençar xx daus de yyyy cares",
-  "command.help.roll.2":     "O escriu '/roll' per llençar un dau de 6 cares",
+  "command.help.1":          	"Instruccions possibles: {{commands}}",
+  "command.help.2":          	"Escriu: '/help [instrucció]' per més informació.",
+  "command.help.help.1":     	"Escriu '/help' o '/?' per obtenir el llistat de totes les instruccions. Tambè pots escriure '/help [instrucció]' per obtenir ajuda d'una instrucció concreta",
+  "command.help.help.2":     	"Però això ja ho sabies, oi?",
+  "command.help.roll.1":     	"Escriu '/help roll xxDyyyy' on xx és un nombre entre 1 i 20 i yyyy és un nombre entre 1 i 1000 per llençar xx daus de yyyy cares",
+  "command.help.roll.2":     	"O escriu '/roll' per llençar un dau de 6 cares",
+  "command.help.sink.1":			"Escriu '/sink challenge xxx' on xxx es un nom d'usuari per desafiar a un jugador a jugar a enfonsar la flota",
+  "command.help.sink.2":			"Escriu '/sink accept xxx' on xxx es un nom d'usuari per acceptar un repte d'un jugador a jugar a enfonsar la flota",
   "command.help.default.command":       "No hi ha ajuda d'aquesta instrucció, demana-li al desenvolupador que la implementi!",
   "command.help.default.not.command":   "'{{command}}' no és una instrucció.",
   
