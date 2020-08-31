@@ -14,7 +14,7 @@
     "start": "node server.js"
   },
   "author": "Joan Fluvia <joanfluvia@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.5",
