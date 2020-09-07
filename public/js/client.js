@@ -3,6 +3,9 @@ import * as Utils from './utils.js';
 
 $(function () {
   let clientSocketManager = new ClientSocketManager();
+
+  // Restore last nick
+  $("#nick").val(localStorage.getItem('lastNick'));
   
   // Disable cache
   $.ajaxSetup ({

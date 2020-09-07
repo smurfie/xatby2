@@ -97,6 +97,7 @@ export default class ClientSocketManager {
   // LOGIN SUCCESS
   _loginSuccess() {
     let nickColor = localStorage.getItem('nickColor');
+    localStorage.setItem('lastNick', this._nick);
     
     $("#login").hide();
     $("#xat-grid").show();
