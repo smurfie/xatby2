@@ -1,30 +1,34 @@
 {
-	"placeholder.user": "Usuario",
-	"placeholder.message": "Mensaje",
-	
-	"label.send": "Enviar",
-	
-	"message.connect": "El servidor está listo y funcionando!",
-	"message.disconnect": "El servidor se ha parado, esperando reconexión...!",
-	"message.user.connected": "{{user}} conectado",
-	"message.user.disconnected": "{{user}} desconectado",
-	
-	"message.username.restriction": "El nombre de usuario tiene que contener solo letras, - o _, desde 4 hasta 15 carácteres",
-	"message.username.in.use": "\"{{user}}\" ya está en uso",
-  
-  "command.instruction.not.a.command":  "'{{instruction}}' no es una instrucción. Escribe /help o /? para una lista de todas las posibles instrucciones.",
-  
-  "command.help.1":         	"Instrucciones posibles: {{commands}}",
-  "command.help.2":          	"Escribe: '/help [instrucción]' para más información.",
-  "command.help.help.1":     	"Escribe '/help' o '/?' para obtener el listado de todas las instrucciones. También puedes escribir '/help [instrucción]' para obtenir ayuda de una instrucción concreta",
-  "command.help.help.2":    	"Pero eso ya lo sabias, no?",
-  "command.help.roll.1":     	"Escribe '/help roll xxDyyyy' donde xx es un número entre 1 y 20 y yyyy es un número entre 1 y 1000 para lanzar xx dados de yyyy caras",
-  "command.help.roll.2":     	"O escribe '/roll' para lanzar un dado de 6 caras",
-  "command.help.sink.1":			"Escribe '/sink challenge xxx' donde xxx es un nombre de usuario para retar a un jugador a jugar a hundir la flota",
-  "command.help.sink.2":			"Escribe '/sink accept xxx' donde xxx es un nombre de usuario para aceptar un reto de un jugador a jugar a hundir la flota",
-  "command.help.default.command":       "No hay ayuda de esta instrucción, pidele al desarrollador que la implemente!",
-  "command.help.default.not.command":   "'{{command}}' no es una instrucción.",
-  
-  "command.roll.error":       "Formato incorrecto. Escribe '/help roll xxDyyyy' donde xx es un número entre 1 y 20 y yyyy es un número entre 1 y 1000 para lanzar xx dados de yyyy caras",
-  "command.roll":             "{{user}} ha lanzado {{dices}} y ha obtenido: {{result}}"
+  "placeholder.user": "Usuario",
+  "placeholder.message": "Mensaje",
+
+  "label.send": "Enviar",
+
+  "message.connect": "El servidor está listo y funcionando!",
+  "message.disconnect": "El servidor se ha parado, esperando reconexión...!",
+  "message.user.connected": "{{user}} conectado",
+  "message.user.disconnected": "{{user}} desconectado",
+
+  "message.username.restriction": "El nombre de usuario tiene que contener solo letras, - o _, desde 4 hasta 15 carácteres",
+  "message.username.in.use": "\"{{user}}\" ya está en uso",
+
+  "command.instruction.not.a.command": "'{{instruction}}' no es una instrucción. Escribe /help o /? para una lista de todas las posibles instrucciones.",
+
+  "command.help.1": "Instrucciones posibles: {{commands}}",
+  "command.help.2": "Escribe: '/help [instrucción]' para más información.",
+  "command.help.help.1": "Escribe '/help' o '/?' para obtener el listado de todas las instrucciones. También puedes escribir '/help [instrucción]' para obtenir ayuda de una instrucción concreta",
+  "command.help.help.2": "Pero eso ya lo sabias, no?",
+  "command.help.roll.1": "Escribe '/help roll xxDyyyy' donde xx es un número entre 1 y 20 y yyyy es un número entre 1 y 1000 para lanzar xx dados de yyyy caras",
+  "command.help.roll.2": "O escribe '/roll' para lanzar un dado de 6 caras",
+  "command.help.sink.1": "Escribe '/sink challenge xxx' donde xxx es un nombre de usuario para retar a un jugador a jugar a hundir la flota",
+  "command.help.sink.2": "Escribe '/sink accept xxx' donde xxx es un nombre de usuario para aceptar un reto de un jugador a jugar a hundir la flota",
+  "command.help.load.texts": "Escribe '/loadTexts' para seleccionar un archivo txt y cargar un listado de textos para imprimir con el comando '/text'",
+  "command.help.del.texts": "Escribe '/delTexts' para borrar un fichero de textos cargado previamente en memoria",
+  "command.help.text.1": "Escribe '/t' o '/text' para imprimir aleatoriamente una línea de un fichero de textos cargado previamente",
+  "command.help.text.2": "Escribe '/t n' o '/text n' donde n es un número de línea para imprimir una línea de un fichero de textos cargado previamente",
+  "command.help.default.command": "No hay ayuda de esta instrucción, pidele al desarrollador que la implemente!",
+  "command.help.default.not.command": "'{{command}}' no es una instrucción.",
+
+  "command.roll.error": "Formato incorrecto. Escribe '/help roll xxDyyyy' donde xx es un número entre 1 y 20 y yyyy es un número entre 1 y 1000 para lanzar xx dados de yyyy caras",
+  "command.roll": "{{user}} ha lanzado {{dices}} y ha obtenido: {{result}}"
 }

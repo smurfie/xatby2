@@ -86,7 +86,7 @@ export default class ClientSocketManager {
   _localParse(nickColor, command) {
     let localCommands = {
       loadTexts: () => this._loadTexts(),
-      deleteTexts: () => this._deleteTexts(),
+      delTexts: () => this._delTexts(),
       text: (params) => this._printText(nickColor, params),
       t: (params) => this._printText(nickColor, params),
     };
@@ -106,7 +106,7 @@ export default class ClientSocketManager {
     $("#file-input").trigger("click");
   }
 
-  _deleteTexts() {
+  _delTexts() {
     localStorage.removeItem("texts");
     Utils.addMessage(
       '<strong style="color:darkblue">Texts Deleted</strong>',
