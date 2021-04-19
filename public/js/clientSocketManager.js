@@ -122,6 +122,11 @@ export default class ClientSocketManager {
     if (texts.length === 0) return;
     index = parseInt(param);
 
+    // If user enters a number, substract one since array starts at 0
+    if (!isNaN(index)) {
+      index--;
+    }
+
     if (isNaN(index) || index < 0 || index > texts.length) {
       index = Math.floor(Math.random() * texts.length);
     }
