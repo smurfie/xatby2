@@ -131,7 +131,7 @@ export default class ClientSocketManager {
       index = Math.floor(Math.random() * texts.length);
     }
 
-    let message = texts[index];
+    let message = "[" + (index + 1) + "]: " + texts[index];
     this._socket.emit("chat message", { nickColor, message });
   }
 
