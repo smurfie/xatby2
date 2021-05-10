@@ -5,7 +5,10 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server, {
+  maxHttpBufferSize: 1e9,
+  pingTimeout: 30000,
+});
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 (i18n = require("i18n")),
