@@ -1,4 +1,5 @@
 const PORT = process.env.PORT || 3000;
+const ENV = process.env.NODE_ENV || "localhost"; // 'production' in production
 
 let express = require("express");
 const app = express();
@@ -7,7 +8,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
   maxHttpBufferSize: 1e9,
-  pingTimeout: 30000,
+  pingTimeout: 30000
 });
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -15,6 +16,7 @@ const bodyParser = require("body-parser");
   (ServerSocketManager = require("./serverSocketManager")),
   (ServerCommandParser = require("./serverCommandParser")),
   (Utils = require("./utils"));
+const isProduction = ENV === "production";
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
@@ -36,7 +38,7 @@ i18n.configure({
   defaultLocale: "en",
   cookie: "i18n",
   directory: __dirname + "/locales",
-  updateFiles: false,
+  updateFiles: false
 });
 
 console.log("Locales detected: " + i18n.getLocales());
@@ -52,7 +54,7 @@ app.get("/", (req, res) => {
     res.cookie("i18n", "en");
     res.setLocale("en");
   }
-  res.render("main", { i18n: res });
+  res.render("main", { i18n: res, isProduction: isProduction });
 });
 
 // change default language
