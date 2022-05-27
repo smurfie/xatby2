@@ -54,7 +54,11 @@ app.get("/", (req, res) => {
     res.cookie("i18n", "en");
     res.setLocale("en");
   }
-  res.render("main", { i18n: res, isProduction: isProduction });
+  res.render("main", {
+    i18n: res,
+    production: ENV,
+    isProduction: isProduction
+  });
 });
 
 // change default language
