@@ -51,6 +51,10 @@ export default class ClientSocketManager {
   _chatMessage({ message, nick, nickColor }) {
     // Escape text from message to avoid html injection:
     let escapedMessage = $("<p></p>").text(message).html();
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    escapedMessage = escapedMessage.replace(urlRegex, function (url) {
+      return '<a href="' + url + '">' + url + "</a>";
+    });
     let escapedNickColor = $("<p></p>").text(nickColor).html();
     let escapedNick = $("<p></p>").text(nick).html();
     Utils.addMessage(
@@ -88,7 +92,7 @@ export default class ClientSocketManager {
       loadTexts: () => this._loadTexts(),
       delTexts: () => this._delTexts(),
       text: (params) => this._printText(nickColor, params),
-      t: (params) => this._printText(nickColor, params),
+      t: (params) => this._printText(nickColor, params)
     };
     let isLocalCommand = false;
 
