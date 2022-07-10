@@ -9,8 +9,7 @@ module.exports = class ServerCommandParser {
     this._commands = {
       "?": (params) => this._help(params),
       help: (params) => this._help(params),
-      roll: (params) => this._roll(params),
-      sink: (params) => this._sink(params), //FIXME Change command for game to hold more games and use with left mouse button?
+      roll: (params) => this._roll(params)
     };
     this._localCommands = ["loadTexts", "delTexts", "text", "t"];
   }
@@ -55,24 +54,9 @@ module.exports = class ServerCommandParser {
           this._req.__("command.roll", {
             user: this._nick,
             dices,
-            result:
-              total + (numDices > 1 ? " (" + values.join(", ") + ")" : ""),
+            result: total + (numDices > 1 ? " (" + values.join(", ") + ")" : "")
           })
         );
-      }
-    }
-  }
-
-  // Play sink game
-  _sink(parameters) {
-    if (parameters.length === 0) {
-      this._sendMessage(this._req.__("command.roll.error"));
-    } else {
-      switch (parameters[0]) {
-        case "challenge":
-          break;
-        default:
-          this._sendMessage(this._req.__("command.roll.error"));
       }
     }
   }
@@ -83,7 +67,7 @@ module.exports = class ServerCommandParser {
         this._req.__("command.help.1", {
           commands: Object.keys(this._commands)
             .concat(this._localCommands)
-            .join(", "),
+            .join(", ")
         })
       );
       this._sendMessage(this._req.__("command.help.2"));
@@ -98,10 +82,6 @@ module.exports = class ServerCommandParser {
         case "roll":
           this._sendMessage(this._req.__("command.help.roll.1"));
           this._sendMessage(this._req.__("command.help.roll.2"));
-          break;
-        case "sink":
-          this._sendMessage(this._req.__("command.help.sink.1"));
-          this._sendMessage(this._req.__("command.help.sink.2"));
           break;
         case "loadTexts":
           this._sendMessage(this._req.__("command.help.load.texts"));
@@ -120,7 +100,7 @@ module.exports = class ServerCommandParser {
           } else {
             this._sendMessage(
               this._req.__("command.help.default.not.command", {
-                command: helpAbout,
+                command: helpAbout
               })
             );
           }

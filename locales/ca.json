@@ -20,8 +20,6 @@
   "command.help.help.2": "Però això ja ho sabies, oi?",
   "command.help.roll.1": "Escriu '/help roll xxDyyyy' on xx és un nombre entre 1 i 20 i yyyy és un nombre entre 1 i 1000 per llençar xx daus de yyyy cares",
   "command.help.roll.2": "O escriu '/roll' per llençar un dau de 6 cares",
-  "command.help.sink.1": "Escriu '/sink challenge xxx' on xxx es un nom d'usuari per desafiar a un jugador a jugar a enfonsar la flota",
-  "command.help.sink.2": "Escriu '/sink accept xxx' on xxx es un nom d'usuari per acceptar un repte d'un jugador a jugar a enfonsar la flota",
   "command.help.load.texts": "Escriu '/loadTexts' per seleccionar un arxiu txt i carregar un llistat de texts per imprimir amb la comanda '/text'",
   "command.help.del.texts": "Escriu '/delTexts' per borrar un fitxer de texts carregat prèviament en memòria",
   "command.help.text.1": "Escriu '/t' o '/text' per imprimir aleatòriament una línia d'un fitxer de texts carregat prèviament",

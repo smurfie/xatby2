@@ -20,8 +20,6 @@
   "command.help.help.2": "Pero eso ya lo sabias, no?",
   "command.help.roll.1": "Escribe '/help roll xxDyyyy' donde xx es un número entre 1 y 20 y yyyy es un número entre 1 y 1000 para lanzar xx dados de yyyy caras",
   "command.help.roll.2": "O escribe '/roll' para lanzar un dado de 6 caras",
-  "command.help.sink.1": "Escribe '/sink challenge xxx' donde xxx es un nombre de usuario para retar a un jugador a jugar a hundir la flota",
-  "command.help.sink.2": "Escribe '/sink accept xxx' donde xxx es un nombre de usuario para aceptar un reto de un jugador a jugar a hundir la flota",
   "command.help.load.texts": "Escribe '/loadTexts' para seleccionar un archivo txt y cargar un listado de textos para imprimir con el comando '/text'",
   "command.help.del.texts": "Escribe '/delTexts' para borrar un fichero de textos cargado previamente en memoria",
   "command.help.text.1": "Escribe '/t' o '/text' para imprimir aleatoriamente una línea de un fichero de textos cargado previamente",

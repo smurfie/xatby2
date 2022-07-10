@@ -20,8 +20,6 @@
   "command.help.help.2": "But you already know, didn't you?",
   "command.help.roll.1": "Use '/help roll xxDyyyy' where xx is a number between 1 and 20 and yyyy is a number between 1 and 1000 to roll xx yyyy-faced dices",
   "command.help.roll.2": "Or use '/roll' to roll a 6-faced dice",
-  "command.help.sink.1": "Type '/sink challenge xxx' where xxx is a username to challenge a player to play a sink game",
-  "command.help.sink.2": "Type '/sink accept xxx' where xxx is a username to accept a challenge of a player to play a sink game",
   "command.help.load.texts": "Type '/loadTexts' to select a txt file and load a list of texts to print with the command '/text'",
   "command.help.del.texts": "Type '/delTexts' to delete a previously loaded in memory txt file",
   "command.help.text.1": "Type '/t' or '/text' to randomly print a line of a previously loaded text file",
@@ -30,7 +28,5 @@
   "command.help.default.not.command": "'{{command}}' is not a command.",
 
   "command.roll.error": "Incorrect format. Use '/help roll xxDyyyy' where xx is a number between 1 and 20 and yyyy is a number between 1 and 1000 to roll xx yyyy-faced dices",
-  "command.roll": "{{user}} rolled {{dices}} and got: {{result}}",
-
-  "command.sink.error": "Incorrect format. Use '/help sink' for a list of the possible options"
+  "command.roll": "{{user}} rolled {{dices}} and got: {{result}}"
 }
