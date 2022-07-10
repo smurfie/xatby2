@@ -33,6 +33,7 @@ export default class ClientSocketManager {
       Utils.translate("message.connect", (message) =>
         Utils.addSystemMessage(message, this._windowFocus)
       );
+      $("#message").removeClass("disconnected");
       // Cache the disconnect message to be able to retrieve it when the server goes down
       Utils.translate("message.disconnect");
     }
@@ -44,6 +45,7 @@ export default class ClientSocketManager {
       Utils.translate("message.disconnect", (message) =>
         Utils.addSystemMessage(message, this._windowFocus)
       );
+      $("#message").addClass("disconnected");
     }
   }
 

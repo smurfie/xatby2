@@ -1,7 +1,7 @@
 const PORT = process.env.PORT || 3000;
 const ENV = process.env.NODE_ENV || "localhost"; // 'production' in production
 
-let express = require("express");
+const express = require("express");
 const app = express();
 const http = require("http");
 const server = http.createServer(app);
