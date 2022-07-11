@@ -83,7 +83,11 @@ let historyPos = 0;
 let actualMessage = "";
 
 export function getHistory() {
-  return JSON.parse(localStorage.getItem("history")) || [];
+  let savedHistory = JSON.parse(localStorage.getItem("history")) || [];
+  if (!Array.isArray(savedHistory)) {
+    savedHistory = [];
+  }
+  return savedHistory;
 }
 
 export function addHistoryMessage(message) {
