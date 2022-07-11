@@ -55,7 +55,7 @@ export default class ClientSocketManager {
     let escapedMessage = $("<p></p>").text(message).html();
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     escapedMessage = escapedMessage.replace(urlRegex, function (url) {
-      return '<a href="' + url + '">' + url + "</a>";
+      return '<a href="' + url + '" target="_blank">' + url + "</a>";
     });
     let escapedNickColor = $("<p></p>").text(nickColor).html();
     let escapedNick = $("<p></p>").text(nick).html();
