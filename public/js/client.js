@@ -9,7 +9,7 @@ $(function () {
 
   // Disable cache
   $.ajaxSetup({
-    cache: false,
+    cache: false
   });
 
   // Keep a variable to know if the window has focus
@@ -34,12 +34,24 @@ $(function () {
     let nickColor = $("#nick-color").val();
     if (message === "") return;
 
+    Utils.addHistoryMessage(message);
     clientSocketManager.sendMessage(nickColor, message);
 
     // We want the nick color stored across sessions
     localStorage.setItem("nickColor", nickColor);
     $("#message").val("");
     return false;
+  });
+
+  // History
+  $("#message").keydown((event) => {
+    if (event.which == 38) {
+      // ARROW UP
+      $("#message").val(Utils.getPreviousHistory($("#message").val()));
+    } else if (event.which == 40) {
+      // ARROW DOWN
+      $("#message").val(Utils.getNextHistory());
+    }
   });
 
   // On Windows resize

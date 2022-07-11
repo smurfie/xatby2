@@ -75,3 +75,39 @@ export function translate(key, callback, params) {
     );
   }
 }
+
+// HISTORY
+const historySize = 50;
+let history = getHistory();
+let historyPos = 0;
+let actualMessage = "";
+
+export function getHistory() {
+  return JSON.parse(localStorage.getItem("history")) || [];
+}
+
+export function addHistoryMessage(message) {
+  history.unshift(message);
+  actualMessage = "";
+  if (history.length > historySize) {
+    history.pop();
+  }
+  localStorage.setItem("history", JSON.stringify(history));
+}
+
+export function getPreviousHistory(currentMessage) {
+  if (historyPos == 0) {
+    actualMessage = currentMessage;
+  }
+  if (historyPos < history.length) {
+    historyPos++;
+  }
+  return history[historyPos - 1];
+}
+
+export function getNextHistory() {
+  if (historyPos > 0) {
+    historyPos--;
+  }
+  return historyPos == 0 ? actualMessage : history[historyPos - 1];
+}
