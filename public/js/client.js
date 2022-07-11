@@ -43,8 +43,16 @@ $(function () {
     return false;
   });
 
-  // History
+  // Press key
+  let isTyping = false;
   $("#message").keydown((event) => {
+    if (!isTyping) {
+      isTyping = true;
+      clientSocketManager.isTyping();
+      setTimeout(() => {
+        isTyping = false;
+      }, 4000);
+    }
     if (event.which == 38) {
       // ARROW UP
       $("#message").val(Utils.getPreviousHistory($("#message").val()));

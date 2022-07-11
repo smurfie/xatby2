@@ -20,6 +20,7 @@ module.exports = class ServerSocketManager {
     this._socket.on("disconnect", () => this._disconnect());
     this._socket.on("chat message", (msg) => this._chatMessage(msg));
     this._socket.on("chat image", (msg) => this._chatImage(msg));
+    this._socket.on("is typing", (msg) => this._isTyping());
   }
 
   /* SOCKET FUNCTIONS */
@@ -42,7 +43,7 @@ module.exports = class ServerSocketManager {
       this._socket.emit("login success");
       this._io.to("general").emit("login message", {
         nick: this._nick,
-        users: Object.keys(this._users).sort(),
+        users: Object.keys(this._users).sort()
       }); //TODO pass message
 
       console.log("User connected: " + this._nick + " :: " + this._socket.id);
@@ -62,7 +63,7 @@ module.exports = class ServerSocketManager {
       delete this._users[this._nick];
       this._io.to("general").emit("disconnect message", {
         nick: this._nick,
-        users: Object.keys(this._users).sort(),
+        users: Object.keys(this._users).sort()
       }); //TODO pass message
     }
   }
@@ -79,7 +80,7 @@ module.exports = class ServerSocketManager {
         this._socket.emit("chat message", {
           message,
           nickColor,
-          nick: this._nick,
+          nick: this._nick
         });
         this._serverCommandParser.parse(message.substring(1));
       } else {
@@ -101,6 +102,16 @@ module.exports = class ServerSocketManager {
       this._io
         .to("general")
         .emit("chat image", { image, nickColor, nick: this._nick });
+    }
+  }
+
+  // IS TYPING
+  _isTyping() {
+    //Check the user is currently in the general room (logged)
+    if (this._socket.rooms.has("general")) {
+      this._socket.broadcast
+        .to("general")
+        .emit("is typing", { nick: this._nick });
     }
   }
 

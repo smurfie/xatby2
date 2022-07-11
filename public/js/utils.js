@@ -5,7 +5,10 @@ export function updateUsers(users, nick) {
   $("#users").empty();
   for (let i = 0; i < users.length; i++) {
     $("#users").append(
-      (users[i] === nick ? '<li class="yourself">' : "<li>") +
+      (users[i] === nick ? '<li class="yourself"' : "<li") +
+        " id='" +
+        users[i].toLowerCase() +
+        "'>" +
         users[i] +
         "</li>"
     );

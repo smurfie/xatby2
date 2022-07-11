@@ -16,6 +16,7 @@ export default class ClientSocketManager {
     this._socket.on("disconnect", () => this._disconnect());
     this._socket.on("chat message", (msg) => this._chatMessage(msg));
     this._socket.on("chat image", (msg) => this._chatImage(msg));
+    this._socket.on("is typing", (msg) => this._isTyping(msg));
     this._socket.on("command message", (msg) => this._commandMessage(msg));
     this._socket.on("login message", (msg) => this._loginMessage(msg));
     this._socket.on("disconnect message", (msg) =>
@@ -86,6 +87,14 @@ export default class ClientSocketManager {
         '" />',
       this._windowFocus
     );
+  }
+
+  // IS TYPING
+  _isTyping({ nick }) {
+    $("#users li#" + nick.toLowerCase()).addClass("is-typing");
+    setTimeout(() => {
+      $("#users li#" + nick.toLowerCase()).removeClass("is-typing");
+    }, 5000);
   }
 
   // LOCAL COMMAND
@@ -223,6 +232,10 @@ export default class ClientSocketManager {
 
   sendImage(nickColor, image) {
     this._socket.emit("chat image", { nickColor, image });
+  }
+
+  isTyping() {
+    this._socket.emit("is typing");
   }
 
   /* GETTERS AND SETTERS */

@@ -80,10 +80,15 @@ body {
   color: white;
   list-style: none;
   border-bottom: 1px solid white;
+  transition: all 1s ease-out;
 }
 
 #users li.yourself {
   color: deepskyblue;
+}
+
+#users li.is-typing {
+  background-color: orange;
 }
 
 #xat {
