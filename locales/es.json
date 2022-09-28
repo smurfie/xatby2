@@ -24,6 +24,7 @@
   "command.help.del.texts": "Escribe '/delTexts' para borrar un fichero de textos cargado previamente en memoria",
   "command.help.text.1": "Escribe '/t' o '/text' para imprimir aleatoriamente una línea de un fichero de textos cargado previamente",
   "command.help.text.2": "Escribe '/t n' o '/text n' donde n es un número de línea para imprimir una línea de un fichero de textos cargado previamente",
+  "command.help.clear": "Escribe '/c' o '/clear' para eliminar el historial de mensajes",
   "command.help.default.command": "No hay ayuda de esta instrucción, pidele al desarrollador que la implemente!",
   "command.help.default.not.command": "'{{command}}' no es una instrucción.",
 

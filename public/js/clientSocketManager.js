@@ -103,7 +103,9 @@ export default class ClientSocketManager {
       loadTexts: () => this._loadTexts(),
       delTexts: () => this._delTexts(),
       text: (params) => this._printText(nickColor, params),
-      t: (params) => this._printText(nickColor, params)
+      t: (params) => this._printText(nickColor, params),
+      clear: () => this._clear(),
+      c: () => this._clear()
     };
     let isLocalCommand = false;
 
@@ -148,6 +150,10 @@ export default class ClientSocketManager {
 
     let message = "[" + (index + 1) + "]: " + texts[index];
     this._socket.emit("chat message", { nickColor, message });
+  }
+
+  _clear() {
+    $("#messages").empty();
   }
 
   // COMMAND MESSAGE

@@ -24,6 +24,7 @@
   "command.help.del.texts": "Escriu '/delTexts' per borrar un fitxer de texts carregat prèviament en memòria",
   "command.help.text.1": "Escriu '/t' o '/text' per imprimir aleatòriament una línia d'un fitxer de texts carregat prèviament",
   "command.help.text.2": "Escriu '/t n' o '/text n' on n és un número de línia per imprimir una línia d'un fitxer de texts carregat prèviament",
+  "command.help.clear": "Escriu '/c' o '/clear' per eliminar l'historial de missatges",
   "command.help.default.command": "No hi ha ajuda d'aquesta instrucció, demana-li al desenvolupador que la implementi!",
   "command.help.default.not.command": "'{{command}}' no és una instrucció.",
 
