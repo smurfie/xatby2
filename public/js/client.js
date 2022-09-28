@@ -32,7 +32,7 @@ $(function () {
   $("body").on("submit", "#xat", function () {
     let message = $("#message").val().trim();
     let nickColor = $("#nick-color").val();
-    if (message === "") return;
+    if (message === "") return false;
 
     Utils.addHistoryMessage(message);
     clientSocketManager.sendMessage(nickColor, message);
