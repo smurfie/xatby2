@@ -132,7 +132,7 @@ export default class ClientSocketManager {
   }
 
   _printText(nickColor, params) {
-    let texts = JSON.parse(localStorage.getItem("texts"));
+    let texts = JSON.parse(localStorage.getItem("texts")) || [];
     let index = -1;
     let param = params[0];
 
