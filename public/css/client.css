@@ -61,6 +61,15 @@ body {
   padding: 5px 10px;
 }
 
+#messages li.system .text {
+  font-weight: bold;
+  color: red;
+}
+
+#messages.hideSystemMessages li.system {
+  display: none;
+}
+
 #messages li:nth-child(odd) {
   background: #eee;
 }

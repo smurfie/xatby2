@@ -105,7 +105,9 @@ export default class ClientSocketManager {
       text: (params) => this._printText(nickColor, params),
       t: (params) => this._printText(nickColor, params),
       clear: () => this._clear(),
-      c: () => this._clear()
+      c: () => this._clear(),
+      toggleSystemMessages: () => this._toggleSystemMessages(),
+      tsm: () => this._toggleSystemMessages()
     };
     let isLocalCommand = false;
 
@@ -156,6 +158,15 @@ export default class ClientSocketManager {
     $("#messages").empty();
   }
 
+  _toggleSystemMessages() {
+    $("#messages").toggleClass("hideSystemMessages");
+    if (localStorage.getItem("hideSystemMessages")) {
+      localStorage.removeItem("hideSystemMessages");
+    } else {
+      localStorage.setItem("hideSystemMessages", true);
+    }
+  }
+
   // COMMAND MESSAGE
   _commandMessage(message) {
     Utils.addMessage(
@@ -204,8 +215,12 @@ export default class ClientSocketManager {
   // LOGIN SUCCESS
   _loginSuccess() {
     let nickColor = localStorage.getItem("nickColor");
+    let hideSystemMessages = localStorage.getItem("hideSystemMessages");
     localStorage.setItem("lastNick", this._nick);
 
+    if (hideSystemMessages) {
+      $("#messages").addClass("hideSystemMessages");
+    }
     $("#login").hide();
     $("#xat-grid").show();
     this._updateUsers();

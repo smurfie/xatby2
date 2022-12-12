@@ -25,6 +25,7 @@
   "command.help.text.1": "Type '/t' or '/text' to randomly print a line of a previously loaded text file",
   "command.help.text.2": "Type '/t n' or '/text n' where n is a line number to print line n of a previously loaded text file",
   "command.help.clear": "Type '/c' or '/clear' to erase messages history",
+  "command.help.toggle.system.messages": "Type '/tsm' or '/toggleSystemMessages' to show/hide system messages",
   "command.help.default.command": "There is no help about this command, ask the developer to implement it!",
   "command.help.default.not.command": "'{{command}}' is not a command.",
 

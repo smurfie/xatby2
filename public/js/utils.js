@@ -17,12 +17,18 @@ export function updateUsers(users, nick) {
 }
 
 // Adds a message to the chat and prepends the actual date
-export function addMessage(message, windowFocus) {
+export function addMessage(message, windowFocus, isSystem) {
   // if the list isn't created yet return;
   if (!$("#messages").length) return;
 
   $("#messages").append(
-    $("<li>").append("(" + _formatDate(new Date()) + ") " + message)
+    $("<li" + (isSystem ? " class='system'" : "") + ">").append(
+      "(" +
+        _formatDate(new Date()) +
+        ") <span class='text'>" +
+        message +
+        "</span>"
+    )
   );
   $("#messages").scrollTop($("#messages")[0].scrollHeight);
   if (!windowFocus && $("#xat-grid").is(":visible")) {
@@ -32,7 +38,7 @@ export function addMessage(message, windowFocus) {
 
 // Adds a system message to the chat
 export function addSystemMessage(message, windowFocus) {
-  addMessage('<strong style="color:red">' + message + "</strong>", windowFocus);
+  addMessage(message, windowFocus, true);
 }
 
 // Format the date to the format HH:MM:SS

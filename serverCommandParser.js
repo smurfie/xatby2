@@ -11,7 +11,16 @@ module.exports = class ServerCommandParser {
       help: (params) => this._help(params),
       roll: (params) => this._roll(params)
     };
-    this._localCommands = ["loadTexts", "delTexts", "text", "t", "clear", "c"];
+    this._localCommands = [
+      "loadTexts",
+      "delTexts",
+      "text",
+      "t",
+      "clear",
+      "c",
+      "toggleSystemMessages",
+      "tsm"
+    ];
   }
 
   parse(command) {
@@ -97,6 +106,12 @@ module.exports = class ServerCommandParser {
         case "c":
         case "clear":
           this._sendMessage(this._req.__("command.help.clear"));
+          break;
+        case "tsm":
+        case "toggleSystemMessages":
+          this._sendMessage(
+            this._req.__("command.help.toggle.system.messages")
+          );
           break;
         default:
           if (this._commands[helpAbout]) {
