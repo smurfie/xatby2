@@ -31,8 +31,11 @@ export function addMessage(message, windowFocus, isSystem) {
     )
   );
   $("#messages").scrollTop($("#messages")[0].scrollHeight);
-  if (!windowFocus && $("#xat-grid").is(":visible")) {
-    document.title = "(*) XatBy2";
+  if (!isSystem && !windowFocus && $("#xat-grid").is(":visible")) {
+    var title = document.title;
+    var i = title.indexOf(")");
+    var newMessages = i > 0 ? Number(title.substring(1, i)) : 0;
+    document.title = "(" + ++newMessages + ") XatBy2";
   }
 }
 
