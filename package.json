@@ -7,7 +7,7 @@
     "url": "git+ssh://git@github.com/smurfie/xatby2.git"
   },
   "engines": {
-    "node": "12.x"
+    "node": ">=16.x"
   },
   "start": "node server.js",
   "scripts": {
@@ -17,10 +17,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.5",
-    "ejs": "^3.1.7",
-    "express": "^4.17.1",
-    "i18n": "^0.8.3",
-    "socket.io": "^4.5.1"
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "i18n": "^0.15.1",
+    "socket.io": "^4.8.0"
   }
 }
