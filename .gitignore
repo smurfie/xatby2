@@ -195,3 +195,4 @@ crashlytics-build.properties
 ### Other files ###
 src/pages/dist/
 /src.zip
+package-lock.json
